@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IVcode</title>
+  
+  <!-- ربط الأيقونة بالمسار المخصص /web/icon.svg -->
+  <link rel="icon" type="image/svg+xml" href="/web/icon.svg" />
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -121,6 +125,15 @@
       font-weight: 800;
       font-size: 1.2rem;
       letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
     }
 
     .search-bar {
@@ -143,7 +156,7 @@
       border-color: #58a6ff;
     }
 
-    /* --- منطقة المحتوى الرئيسية في المنتصف --- */
+    /* --- منطقة المحتوى الرئيسية --- */
     .app-container {
       display: flex;
       justify-content: center;
@@ -219,7 +232,10 @@
 
   <!-- Navbar -->
   <header class="navbar">
-    <div class="brand">IVcode</div>
+    <div class="brand">
+      <img src="/web/icon.svg" alt="IVcode Logo" class="brand-logo" />
+      <span>IVcode</span>
+    </div>
     <div class="search-bar">
       <input type="text" placeholder="Type / to search..." />
     </div>
@@ -227,7 +243,6 @@
   </header>
 
   <div class="app-container">
-    <!-- المحتوى التعريفى في النص مباشرة -->
     <main class="content-area">
       <div class="hero-card">
         <h1>Welcome to IVcode</h1>
