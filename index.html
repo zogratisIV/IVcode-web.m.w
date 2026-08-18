@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IVcode</title>
-  
-  <!-- ربط الأيقونة بالمسار المخصص /web/icon.svg -->
-  <link rel="icon" type="image/svg+xml" href="/web/icon.svg" />
+
+  <!-- أيقونة التبويب مدمجة مباشرة كـ Data URI لضمان عملها فوراً على GitHub Pages بدون مشاكل مسارات -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000'/><path d='M80 20 C50 5, 10 25, 15 55 C20 85, 55 95, 85 80 L75 70 C55 80, 28 72, 26 55 C24 38, 50 20, 72 30 Z' fill='%23fff'/><polygon points='80,20 68,32 90,15' fill='%23fff'/><rect x='38' y='38' width='6' height='26' fill='%23fff'/><polygon points='50,38 56,38 64,56 72,38 78,38 67,64 61,64' fill='%23fff'/></svg>" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,7 +55,7 @@
       100% { opacity: 0.4; }
     }
 
-    /* --- رؤوس شهب بيضاء ببريق ناصع --- */
+    /* --- الشهب --- */
     .meteor {
       position: absolute;
       width: 25px;
@@ -105,35 +105,40 @@
       100% { transform: translateX(-110vw) translateY(-40vh) rotate(-155deg); opacity: 0; }
     }
 
-    /* --- الهيدر العلوي --- */
+    /* --- Navbar --- */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
       height: 60px;
-      background-color: transparent;
+      background-color: rgba(0, 0, 0, 0.8);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(8px);
     }
 
     .brand {
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
     }
 
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
+    .brand-svg {
+      width: 36px;
+      height: 36px;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
     }
 
     .search-bar {
@@ -146,7 +151,7 @@
       padding: 8px 14px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: transparent;
+      background: rgba(255, 255, 255, 0.05);
       color: #fff;
       outline: none;
       font-size: 0.9rem;
@@ -156,7 +161,7 @@
       border-color: #58a6ff;
     }
 
-    /* --- منطقة المحتوى الرئيسية --- */
+    /* --- المحتوى الرئيسي --- */
     .app-container {
       display: flex;
       justify-content: center;
@@ -167,7 +172,7 @@
 
     .content-area {
       width: 100%;
-      padding: 50px 20px;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -177,12 +182,23 @@
 
     .hero-card {
       width: 100%;
-      background: transparent;
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 40px 30px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95), 0 0 12px rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* اللوجو الأيقوني في منتصف الصفحة بأعلى الكرت */
+    .main-hero-logo {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
     }
 
     .hero-card h1 {
@@ -200,7 +216,7 @@
 
     .card {
       width: 100%;
-      background: transparent;
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 24px;
@@ -233,18 +249,36 @@
   <!-- Navbar -->
   <header class="navbar">
     <div class="brand">
-      <img src="/web/icon.svg" alt="IVcode Logo" class="brand-logo" />
-      <span>IVcode</span>
+      <!-- رسم اللوجو الـ C والـ IV بشكل حاد وواضح جداً -->
+      <svg class="brand-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- حرف C الشهاب الحاد -->
+        <path d="M 80 20 C 50 5, 10 25, 15 55 C 20 85, 55 95, 85 80 L 75 70 C 55 80, 28 72, 26 55 C 24 38, 50 20, 72 30 Z" fill="#ffffff"/>
+        <polygon points="80,20 68,32 90,15" fill="#ffffff"/>
+        <!-- IV الداخلي -->
+        <rect x="38" y="38" width="6" height="26" fill="#ffffff"/>
+        <polygon points="50,38 56,38 64,56 72,38 78,38 67,64 61,64" fill="#ffffff"/>
+      </svg>
+      <span class="brand-title">IVcode</span>
     </div>
+
     <div class="search-bar">
       <input type="text" placeholder="Type / to search..." />
     </div>
+
     <div style="font-size: 0.9rem; color: #8b949e;">Profile</div>
   </header>
 
   <div class="app-container">
     <main class="content-area">
       <div class="hero-card">
+        <!-- لوجو الصفحة الكبير في المنتصف -->
+        <svg class="main-hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 80 20 C 50 5, 10 25, 15 55 C 20 85, 55 95, 85 80 L 75 70 C 55 80, 28 72, 26 55 C 24 38, 50 20, 72 30 Z" fill="#ffffff"/>
+          <polygon points="80,20 68,32 90,15" fill="#ffffff"/>
+          <rect x="38" y="38" width="6" height="26" fill="#ffffff"/>
+          <polygon points="50,38 56,38 64,56 72,38 78,38 67,64 61,64" fill="#ffffff"/>
+        </svg>
+
         <h1>Welcome to IVcode</h1>
         <p>This is IVcode, a company for software projects and developer tools. Welcome to the ultimate open-source swamp. I work endlessly (solo as the CEO) to satisfy and empower every user.</p>
       </div>
