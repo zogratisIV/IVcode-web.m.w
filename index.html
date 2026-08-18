@@ -11,14 +11,14 @@
       background-color: #0b0b0f;
       color: #fff;
       font-family: system-ui, -apple-system, sans-serif;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
     }
 
-    /* 1. Navbar (الشريط العلوي) */
+    /* 1. Header ثابت فوق */
     .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       height: 60px;
       border-bottom: 1px solid #2d2d3a;
       display: flex;
@@ -54,65 +54,73 @@
       border-color: #58a6ff;
     }
 
-    /* 2. Main Layout (التقسيم الرئيسي) */
+    /* 2. Main Layout (يمتد لتحت عادي) */
     .app-container {
       display: flex;
-      flex: 1;
-      overflow: hidden;
+      min-height: calc(100vh - 60px);
     }
 
-    /* القائمة الجانبية (الشمال) */
+    /* القائمة الجانبية (جاهزة للتحويل لأيقونات بسهولة) */
     .sidebar {
-      width: 260px;
+      width: 240px;
       border-right: 1px solid #2d2d3a;
       background-color: #121218;
-      padding: 20px;
+      padding: 20px 10px;
       display: flex;
       flex-direction: column;
+      gap: 8px;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
       gap: 12px;
-    }
-
-    .sidebar h3 {
-      font-size: 0.85rem;
-      color: #8b949e;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .repo-item {
-      padding: 8px 10px;
+      padding: 10px 14px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 0.95rem;
       color: #c9d1d9;
       transition: 0.2s;
+      font-size: 0.95rem;
     }
 
-    .repo-item:hover {
+    .nav-item:hover {
       background-color: #2d2d3a;
       color: #fff;
     }
 
-    /* منطقة المحتوى (النص) */
+    /* منطقة المحتوى الممتدة لتحت */
     .content-area {
       flex: 1;
       padding: 30px;
-      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .card {
       background: #121218;
       border: 1px solid #2d2d3a;
       border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #58a6ff;
+    }
+
+    .card p {
+      color: #8b949e;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. Header & Search Bar -->
+  <!-- Navbar -->
   <header class="navbar">
     <div class="brand">IVcode</div>
     <div class="search-bar">
@@ -121,22 +129,35 @@
     <div style="font-size: 0.9rem; color: #8b949e;">Profile</div>
   </header>
 
-  <!-- 2. Main Layout -->
   <div class="app-container">
     
-    <!-- Sidebar Left -->
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <h3>Repositories</h3>
-      <div class="repo-item">📁 project-alpha</div>
-      <div class="repo-item">📁 rust-backend</div>
-      <div class="repo-item">📁 ivcode-web</div>
+      <div class="nav-item"><span>📁</span> <span class="text">Projects</span></div>
+      <div class="nav-item"><span>⚡</span> <span class="text">Activity</span></div>
+      <div class="nav-item"><span>⚙️</span> <span class="text">Settings</span></div>
     </aside>
 
-    <!-- Center Content -->
+    <!-- Content (ممتد وسكرول) -->
     <main class="content-area">
       <div class="card">
-        <h2>أهلاً بك في IVcode</h2>
-        <p style="color: #8b949e; margin-top: 8px;">هنا هتتحط كل الحبشتكنات، الـ Feeds، أو إحصائيات المشروعات.</p>
+        <h3>Main Section</h3>
+        <p>بداية المحتوى الأساسي للـ IVcode.</p>
+      </div>
+
+      <div class="card">
+        <h3>Recent Updates</h3>
+        <p>هنا الحبشتكنات والـ Feed الممتدة لتحت براحتك...</p>
+      </div>
+
+      <div class="card">
+        <h3>More Content</h3>
+        <p>كارت تاني عشان الصفحة تسكرول وتشوف امتدادها.</p>
+      </div>
+
+      <div class="card">
+        <h3>Footer Area Card</h3>
+        <p>آخر الكروت الممتدة أسفل الصفحة.</p>
       </div>
     </main>
 
